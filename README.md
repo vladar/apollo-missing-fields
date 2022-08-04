@@ -7,8 +7,7 @@ Sometimes `apollo.cache.diff` returns results with missing fields.
 
 # Example
 
-Let's write some array with partial data, and then try to read more data than was written
-to cache:
+Let's write an array of objects with a single `id` field and then try to read fields `id`, `foo` and `bar`:
 
 ```js
   client.cache.writeQuery({
@@ -22,7 +21,7 @@ to cache:
   });
 ```
 
-Apollo will report us which fields are missing in the returned result:
+We haven't written `foo` and `bar` fields. So Apollo will report us which fields are missing in the returned result:
 
 ```js
 // `returned` contains:
@@ -74,3 +73,9 @@ missing fields: 1 x 279 ops/sec ±10.99% (59 runs sampled)
 missing fields: 2 x 276 ops/sec ±17.04% (46 runs sampled)
 ```
 
+# Try it
+
+```
+yarn
+yarn bench
+```
